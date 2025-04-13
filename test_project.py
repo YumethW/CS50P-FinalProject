@@ -17,21 +17,12 @@ def test_scrambleWord():
 
     assert scrambleWord("abc", substitutions) == "@8("
     assert scrambleWord("ABC", substitutions) == "@8("
-    assert (
-        scrambleWord("abcdef", substitutions) == "@8(def"
-    )
+    assert scrambleWord("abcdef", substitutions) == "@8(def"
 
 
 def test_generatePasswords():
     words = ["foo", "bar", "buz", "qux"]
-    substitutions = {
-        "a": "@",
-        "b": "8",
-        "e": "3",
-        "o": "0",
-        "t": "7",
-        "z": "2"
-        }
+    substitutions = {"a": "@", "b": "8", "e": "3", "o": "0", "t": "7", "z": "2"}
 
     passwords = generatePasswords(words, substitutions)
     assert len(passwords) == 3

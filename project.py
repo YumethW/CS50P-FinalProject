@@ -1,8 +1,10 @@
 import random
+import csv
+import sys
 
 
 def main():
-    print("This program will generate a password for you.")
+    print("\nThis program will generate a password for you.\n")
     substitutions = {
         "a": "4",
         "b": "8",
@@ -39,11 +41,58 @@ def main():
 
     passwords = generatePasswords(validatedWords, substitutions)
 
-    print("===================================")
+    print("\n\n===================================\n")
     for i, password in enumerate(passwords, 1):
         print(f"Password {i}: {password}")
 
-    print("===================================")
+    print("\n===================================\n")
+
+    save = input("\nDo you want to save your passwords to a file? (y/n): ")
+
+    if save.lower() == "y":
+        addedPasswords = []
+
+        while len(addedPasswords) < 3:
+            passwordIndex = input("\nEnter the password number to save (1-3) or 'q' to quit: ")
+
+            if passwordIndex.lower() == 'q':
+                print("Exiting password saving.")
+                break
+
+            try:
+                passwordIndex = int(passwordIndex)
+
+                if passwordIndex < 1 or passwordIndex > 3:
+                    print("Invalid password number. Please enter 1, 2, or 3.\n")
+                    continue
+
+                if passwordIndex in addedPasswords:
+                    print("This password has already been saved.\n")
+                    continue
+
+                addedPasswords.append(passwordIndex)
+                passwordKey = input("\nEnter the name of the password: ")
+                passwordDict = {passwordKey: passwords[passwordIndex - 1]}
+
+                with open("passwords.csv", "a", newline="") as csvfile:
+                    writer = csv.writer(csvfile)
+                    writer.writerow([passwordKey, passwords[passwordIndex - 1]])
+                    print(f"Password for {passwordKey} saved successfully!\n")
+
+                if len(addedPasswords) == 3:
+                    print("All passwords saved.\n")
+
+            except ValueError:
+                print("\nInvalid input. Please enter a number between 1 and 3.\n")
+
+    elif save.lower() == "n":
+        print("Passwords not saved.\n")
+
+    else:
+        print("Invalid input. Passwords not saved.\n")
+
+    print("Have a nice day ahead!\n")
+    sys.exit(0)
 
 
 def validateUserInput(words):
