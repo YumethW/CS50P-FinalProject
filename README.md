@@ -4,6 +4,7 @@ This small project helps users create secure passwords using personally signific
 
 ## Tech Stack
 - Python
+- Pytest
 
 ## Key Features
 - **Password Generation**: Generates 3 passwords to the user
