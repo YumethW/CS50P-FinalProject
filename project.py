@@ -71,7 +71,16 @@ def main():
                     continue
 
                 addedPasswords.append(passwordIndex)
-                passwordKey = input("\nEnter the name of the password: ")
+                passwordKey = ""
+                
+                while True:
+                    passwordKey = input("\nEnter the name of the password: ")
+                    if passwordKey == "":
+                        print("Password name cannot be empty. Please enter a valid name.\n")
+
+                    else:
+                        break
+
                 passwordDict = {passwordKey: passwords[passwordIndex - 1]}
 
                 with open("passwords.csv", "a", newline="") as csvfile:
