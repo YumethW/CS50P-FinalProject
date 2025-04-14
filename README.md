@@ -1,6 +1,6 @@
 # Password Generator
 
-This small project helps users create secure passwords using personally significant words, making them both memorable and resistant to guessing attacks.
+This mini project helps users create secure passwords using personally significant words, making them both memorable and resistant to guessing attacks.
 
 ## Tech Stack
 - Python
